@@ -1,7 +1,6 @@
 import typing as t
 from pathlib import Path
-
-import joblib
+import pickle
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 
@@ -28,14 +27,14 @@ def save_model(*, model_to_persist: RandomForestRegressor) -> None:
     save_path = TRAINED_MODEL_DIR / save_file_name
 
     remove_old_models(files_to_keep=[save_file_name])
-    joblib.dump(model_to_persist, save_path)
+    pickle.dump(model_to_persist, save_path)
 
 
 def load_model(*, file_name: str) -> RandomForestRegressor:
-    """Load a persisted pipeline."""
+    """Load a persisted model."""
 
     file_path = TRAINED_MODEL_DIR / file_name
-    trained_model = joblib.load(filename=file_path)
+    trained_model = pickle.load(file_path)
     return trained_model
 
 
