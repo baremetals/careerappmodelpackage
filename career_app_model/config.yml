@@ -4,10 +4,12 @@ package_name: career_app_model
 # Data Files
 training_data_file: model_data.csv
 test_data_file: user_training_data.csv
+embeddings_data: job_roles_data.csv
+
 n_estimators: 100
 
 # Variables
-# The variable we are attempting to predict (sale price)
+# The variable we are attempting to predict (Suitability Score)
 target: SuitabilityScore
 
 model_name: career_app_model
@@ -46,5 +48,10 @@ test_size: 0.2
 # to set the random seed
 random_state: 42
 
+# Embeddings data
+
 # Embeddings dimension
 embedding_dimension: 437
+embedding_collection_name: "job_role_embeddings"
+embedding_field_name: "embedding"
+embedding_role_id_name: "role_id"

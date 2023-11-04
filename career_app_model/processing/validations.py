@@ -5,7 +5,7 @@ import numpy as np
 
 
 def validate_inputs(*, input_data: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[dict]]:
-    """Check model inputs for unprocessable values."""
+    """Check model inputs for wrong values."""
 
     # Assuming you've pre-processed and filtered the columns you need in your data
     validated_data = input_data.copy()

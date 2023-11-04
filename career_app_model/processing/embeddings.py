@@ -1,3 +1,4 @@
+from config.core import config
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from pymilvus import Collection, DataType, FieldSchema, CollectionSchema
@@ -32,7 +33,7 @@ role_id = FieldSchema(
 embedding_field = FieldSchema(
     name="embedding",
     dtype=DataType.FLOAT_VECTOR,
-    dim=437 # Assuming the embeddings dimension is 768, modify if different.
+    dim=437  # Assuming the embeddings dimension is 768, modify if different.
 )
 
 # Create the collection schema
@@ -49,9 +50,9 @@ collection = Collection(
     schema=schema
 )
 
+
 # Function to save embeddings to Milvus
 def insert_embeddings_to_milvus(embeddings_data):
-
     # Prepare the data for insertion
     role_ids = df['Role ID'].tolist()
 
