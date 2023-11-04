@@ -1,3 +1,4 @@
+from core import config
 from pymilvus import connections
 import os
 

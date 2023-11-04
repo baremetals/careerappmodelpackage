@@ -43,11 +43,30 @@ class ModelConfig(BaseModel):
     ref_var: str
 
 
+class EmbeddingConfig(BaseModel):
+    """
+    All configuration relevant to creating embeddings
+    locally.
+    """
+    embeddings_data_file: str
+    embedding_dimension: int
+    embedding_collection_name: str
+    embedding_collection_description: str
+    embedding_field_name: str
+    embedding_role_id_name: str
+    embedding_is_primary: bool
+    embedding_max_length: int
+    embedding_max_features: int
+    embedding_group_by: str
+    embedding_apply_to: str
+
+
 class Config(BaseModel):
     """Master config object."""
 
     app_config: AppConfig
     model_config: ModelConfig
+    embedding_config: EmbeddingConfig
 
 
 def find_config_file() -> Path:
@@ -79,6 +98,7 @@ def create_and_validate_config(parsed_config: YAML = None) -> Config:
     _config = Config(
         app_config=AppConfig(**parsed_config.data),
         model_config=ModelConfig(**parsed_config.data),
+        embedding_config=EmbeddingConfig(**parsed_config.data),
     )
 
     return _config

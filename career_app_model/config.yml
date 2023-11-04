@@ -4,7 +4,7 @@ package_name: career_app_model
 # Data Files
 training_data_file: model_data.csv
 test_data_file: user_training_data.csv
-embeddings_data: job_roles_data.csv
+embedding_data_file: structured_job_roles_data.csv
 
 n_estimators: 100
 
@@ -49,9 +49,13 @@ test_size: 0.2
 random_state: 42
 
 # Embeddings data
-
-# Embeddings dimension
 embedding_dimension: 437
+embedding_collection_description: "Job Role Embeddings"
 embedding_collection_name: "job_role_embeddings"
 embedding_field_name: "embedding"
 embedding_role_id_name: "role_id"
+embedding_group_by: "Role ID"
+embedding_apply_to: "Skills"
+embedding_is_primary: True
+embedding_max_length: 200
+embedding_max_features: 5000
