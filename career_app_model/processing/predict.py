@@ -14,14 +14,25 @@ _suitability_model = load_model(file_name=model_file_name)
 def predict_suitability_score(*, input_data: t.Union[pd.DataFrame, dict], ) -> dict:
     """Predict the suitability score using a saved model."""
 
-    user_data = pd.DataFrame(input_data)
-    validated_data, errors = validate_inputs(input_data=user_data)
-    results = {"suitability_score": None, "version": _version, "errors": errors}
+    validated_data, errors = validate_inputs(input_data=input_data)
+    results = {"suitability_scores": None, "version": _version, "errors": errors}
 
     if not errors:
-        suitability = _suitability_model.predict(validated_data)
+        selected_industries = [
+            input_data.get("selectedIndustry1"),
+            input_data.get("selectedIndustry2"),
+            input_data.get("selectedIndustry3"),
+            input_data.get("selectedIndustry4"),
+            input_data.get("selectedIndustry5")
+        ]
+
+        suitability_scores = {}
+        for industry in selected_industries:
+            # Using the actual input data for prediction
+            predicted_score = _suitability_model.predict(input_data)[0]
+            suitability_scores[industry] = predicted_score
         results = {
-            "suitability_score": suitability,
+            "suitability_scores": suitability_scores,
             "version": _version,
             "errors": errors
         }

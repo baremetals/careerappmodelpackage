@@ -1,2 +1,5 @@
 venv
 volumes
+dist
+tid_career_app_model.egg-info
+requirements.txt
