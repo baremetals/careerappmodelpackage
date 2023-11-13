@@ -1,7 +1,8 @@
 from typing import List, Optional, Tuple
+
+import numpy as np
 import pandas as pd
 from pydantic import BaseModel, ValidationError
-import numpy as np
 
 
 def validate_inputs(*, input_data: pd.DataFrame) -> Tuple[pd.DataFrame, Optional[dict]]:

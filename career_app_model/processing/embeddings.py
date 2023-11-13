@@ -1,12 +1,17 @@
-from career_app_model.config.core import config
+import ast
+from pathlib import Path
+
+import joblib
+from pymilvus import Collection, CollectionSchema, DataType, FieldSchema
+
 # import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
-from pymilvus import Collection, DataType, FieldSchema, CollectionSchema
+
+from career_app_model.config.core import DATASET_DIR, config
 
 # Import the connection function
 from career_app_model.config.milvus_server import connect_to_milvus
 from career_app_model.processing.data_manager import load_dataset
-import json
 
 # Make sure we're connected to Milvus
 connect_to_milvus()
@@ -14,6 +19,13 @@ connect_to_milvus()
 
 def create_vectorizer():
     return TfidfVectorizer(max_features=config.embedding_config.embedding_max_features)
+
+
+def convert_string_to_list(string):
+    try:
+        return ast.literal_eval(string)
+    except ValueError:
+        return []
 
 
 # Load the job roles data
@@ -26,52 +38,68 @@ aggregated_skills = (df.groupby(config.embedding_config.embedding_group_by)[conf
 
 # Generate embeddings using TfidfVectorizer
 vectorizer = create_vectorizer()
-# control the embedding size
-X = vectorizer.fit_transform(aggregated_skills[config.embedding_config.embedding_apply_to])
+vectorizer.fit(aggregated_skills[config.embedding_config.embedding_apply_to])
 
-embeddings_aggregated = X.todense().tolist()
+# save the vectorizer
+joblib.dump(vectorizer, Path(f"{DATASET_DIR}/vectorizer.joblib"))
+
+# control the embedding size
+X_embeddings = vectorizer.transform(aggregated_skills[config.embedding_config.embedding_apply_to])
+
+embeddings_aggregated = X_embeddings.todense().tolist()
+
+# Drop extra columns
+df = df.drop(columns=['Education Requirements', 'Progress Paths', 'Skills'])
 
 # Define the primary key field
 role_id = FieldSchema(
-    name=config.embedding_config.embedding_role_id_name,  # "role_id"
+    name="role_id",
     dtype=DataType.VARCHAR,
-    is_primary=config.embedding_config.embedding_is_primary,
-    max_length=config.embedding_config.embedding_max_length
+    is_primary=True,
+    max_length=200
 )
 
 # Define the embeddings field
-embedding_field = FieldSchema(
-    name=config.embedding_config.embedding_field_name,
+embedding = FieldSchema(
+    name="Embedding",
     dtype=DataType.FLOAT_VECTOR,
-    dim=config.embedding_config.embedding_dimension  # Assuming the embeddings dimension is 768, modify if different.
+    dim=437
 )
 
-# Define the fields for additional data
-title_field = FieldSchema(
+title = FieldSchema(
     name="title",
     dtype=DataType.VARCHAR,
     max_length=255
 )
 
-description_field = FieldSchema(
-    name="description",
-    dtype=DataType.VARCHAR,
-    max_length=1000
-)
+required_weight = FieldSchema(name="required_weight", dtype=DataType.FLOAT)
+industries = FieldSchema(name="industries", dtype=DataType.ARRAY, element_type=DataType.VARCHAR, max_capacity=900,
+                         max_length=1000)
+career_paths = FieldSchema(name="career_paths", dtype=DataType.ARRAY, element_type=DataType.VARCHAR, max_capacity=900,
+                           max_length=1000)  # Serialized JSON string
 
-metadata_field = FieldSchema(
-    name="metadata",
+description = FieldSchema(
+    name="description",
     dtype=DataType.VARCHAR,
     max_length=1000
 )
 
 # Create the collection schema
 schema = CollectionSchema(
-    fields=[role_id, embedding_field, title_field, description_field, metadata_field],
-    description=config.embedding_config.embedding_collection_description
+    fields=[
+        role_id,
+        embedding,
+        title,
+        required_weight,
+        industries,
+        career_paths,
+        description
+    ],
+    description="Job Role Embeddings"
+
 )
 
-collection_name = config.embedding_config.embedding_collection_name  # "job_role_embeddings"
+collection_name = "job_role_embeddings"
 
 # Create the collection
 collection = Collection(
@@ -79,17 +107,22 @@ collection = Collection(
     schema=schema
 )
 
+index_params = {
+    "metric_type": "L2",  # Or another metric type based on your needs
+    "index_type": "AUTOINDEX",  # Choose an index type suitable for your use case
+    "params": {}  # Adjust parameters as needed
+}
+collection.create_index(field_name="Embedding", index_params=index_params)
+
 
 # Function to save embeddings to Milvus
 def insert_embeddings_to_milvus(embeddings_data):
-    # Prepare the data for insertion
-    role_ids = df[config.embedding_config.embedding_group_by].tolist()
-    titles = df['Title'].tolist()
-    descriptions = df['Description'].tolist()
-    metadata = df['Metadata'].apply(json.dumps).tolist()
+    df['Embedding'] = embeddings_data
+    df['industries'] = df['industries'].apply(convert_string_to_list)
+    data_list = df.to_dict('records')
 
     # Insert data into Milvus
-    collection.insert([role_ids, embeddings_data, titles, descriptions, metadata])
+    collection.insert(data_list)
 
 
 insert_embeddings_to_milvus(embeddings_data=embeddings_aggregated)

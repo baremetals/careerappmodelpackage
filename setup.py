@@ -11,7 +11,7 @@ DESCRIPTION = "Career Suitability Model Training."
 URL = "https://github.com/baremetals/careerappmodelpackage"
 EMAIL = "baremetals16@gmail.com"
 AUTHOR = "Daniel Asante"
-REQUIRES_PYTHON = ">=3.10.0"
+REQUIRES_PYTHON = ">=3.6.0"
 
 long_description = DESCRIPTION
 

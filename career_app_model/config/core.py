@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Dict, List, Optional, Sequence
+from typing import List, Optional
 
 from pydantic import BaseModel
 from strictyaml import YAML, load
@@ -22,25 +22,19 @@ class AppConfig(BaseModel):
     package_name: str
     training_data_file: str
     test_data_file: str
-    model_save_file: str
+    save_model_file: str
 
 
 class ModelConfig(BaseModel):
     """
-    All configuration relevant to model
-    training.
+    All configuration relevant to model training.
     """
 
     target: str
-    variables_to_rename: Dict
     features: List[str]
     test_size: float
     random_state: int
-    categorical_vars_with_na_frequent: List[str]
-    categorical_vars_with_na_missing: List[str]
-    numerical_vars_with_na: List[str]
-    temporal_vars: List[str]
-    ref_var: str
+    n_estimators: int
 
 
 class EmbeddingConfig(BaseModel):
@@ -65,7 +59,7 @@ class Config(BaseModel):
     """Master config object."""
 
     app_config: AppConfig
-    model_config: ModelConfig
+    app_model_config: ModelConfig
     embedding_config: EmbeddingConfig
 
 
@@ -97,7 +91,7 @@ def create_and_validate_config(parsed_config: YAML = None) -> Config:
     # specify the data attribute from the strictyaml YAML type.
     _config = Config(
         app_config=AppConfig(**parsed_config.data),
-        model_config=ModelConfig(**parsed_config.data),
+        app_model_config=ModelConfig(**parsed_config.data),
         embedding_config=EmbeddingConfig(**parsed_config.data),
     )
 

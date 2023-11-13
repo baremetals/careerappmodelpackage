@@ -1,8 +1,10 @@
+# from sklearn.feature_extraction.text import TfidfVectorizer
+from typing import Tuple
+
 import numpy as np
 import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
-from typing import Tuple
-from embeddings import create_vectorizer
+
+# from embeddings import create_vectorizer
 
 
 # Function to prepare data for training
@@ -44,17 +46,14 @@ def json_to_dataframe(input_data: dict) -> pd.DataFrame:
 
     # Extracting the main fields
     user_id = input_data["userId"]
+    industries = input_data.get("selectedIndustries", [])
+
     selected_industries = {
-        "selectedIndustry1": input_data.get("selectedIndustries")[0] if len(
-            input_data.get("selectedIndustries", [])) > 0 else None,
-        "selectedIndustry2": input_data.get("selectedIndustries")[1] if len(
-            input_data.get("selectedIndustries", [])) > 1 else None,
-        "selectedIndustry3": input_data.get("selectedIndustries")[2] if len(
-            input_data.get("selectedIndustries", [])) > 2 else None,
-        "selectedIndustry4": input_data.get("selectedIndustries")[3] if len(
-            input_data.get("selectedIndustries", [])) > 3 else None,
-        "selectedIndustry5": input_data.get("selectedIndustries")[4] if len(
-            input_data.get("selectedIndustries", [])) > 4 else None,
+        "selectedIndustry1": industries[0] if len(industries) > 0 else None,
+        "selectedIndustry2": industries[1] if len(industries) > 1 else None,
+        "selectedIndustry3": industries[2] if len(industries) > 2 else None,
+        "selectedIndustry4": industries[3] if len(industries) > 3 else None,
+        "selectedIndustry5": industries[4] if len(industries) > 4 else None,
     }
 
     # Extracting the responses
@@ -77,10 +76,10 @@ def json_to_dataframe(input_data: dict) -> pd.DataFrame:
     return df
 
 
-def generate_query_embedding(user_interests):
-    vectorizer = create_vectorizer()
-    interests_str = ",".join(user_interests)
-
-    # Generate an embedding for the given interests
-    interests_embedding = vectorizer.transform([interests_str]).todense()
-    return interests_embedding
+# def generate_query_embedding(user_interests):
+#     vectorizer = create_vectorizer()
+#     interests_str = ",".join(user_interests)
+#
+#     # Generate an embedding for the given interests
+#     interests_embedding = vectorizer.fit_transform([interests_str]).todense().tolist()
+#     return interests_embedding

@@ -18,7 +18,7 @@ def predict_suitability_score(*, input_data: t.Union[pd.DataFrame, dict], ) -> d
     results = {"suitability_scores": None, "version": _version, "errors": errors}
 
     if not errors:
-        selected_industries = [
+        selected_industries: t.List[t.Optional[str]] = [
             input_data.get("selectedIndustry1"),
             input_data.get("selectedIndustry2"),
             input_data.get("selectedIndustry3"),
@@ -36,5 +36,6 @@ def predict_suitability_score(*, input_data: t.Union[pd.DataFrame, dict], ) -> d
             "version": _version,
             "errors": errors
         }
+        print(results)
 
     return results

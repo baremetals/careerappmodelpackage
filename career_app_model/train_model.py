@@ -1,27 +1,25 @@
 from config.core import config
 from processing.data_manager import load_dataset, save_model
 from processing.prepare_data import prepare_data
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
+from sklearn.model_selection import train_test_split
 
 
 def run_training() -> None:
     # read training data
     model_data = load_dataset(file_name=config.app_config.training_data_file)
-
     # read user data
     user_data = load_dataset(file_name=config.app_config.test_data_file)
-
     # Prepare the data and train the model again
     X, y = prepare_data(user_data, model_data)
 
     # Split the data into training and validation sets
-    X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=config.model_config.test_size, random_state=config
-                                                      .model_config.random_state)
+    X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=config.app_model_config.test_size, random_state=config
+                                                      .app_model_config.random_state)
 
     # Train the model
-    model = RandomForestRegressor(n_estimators=config.model_config.n_estimators, random_state=config.model_config
+    model = RandomForestRegressor(n_estimators=config.app_model_config.n_estimators, random_state=config.app_model_config
                                   .random_state)
 
     model.fit(X_train, y_train)

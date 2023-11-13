@@ -1,6 +1,7 @@
+import pickle
 import typing as t
 from pathlib import Path
-import pickle
+
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 
@@ -23,18 +24,20 @@ def save_model(*, model_to_persist: RandomForestRegressor) -> None:
         """
 
     # Prepare versioned save file name
-    save_file_name = f"{config.app_config.pipeline_save_file}{_version}.pkl"
+    save_file_name = f"{config.app_config.save_model_file}{_version}.pkl"
     save_path = TRAINED_MODEL_DIR / save_file_name
 
     remove_old_models(files_to_keep=[save_file_name])
-    pickle.dump(model_to_persist, save_path)
+    with open(save_path, 'wb') as file:
+        pickle.dump(model_to_persist, file)
 
 
 def load_model(*, file_name: str) -> RandomForestRegressor:
     """Load a persisted model."""
 
     file_path = TRAINED_MODEL_DIR / file_name
-    trained_model = pickle.load(file_path)
+    with open(file_path, 'rb') as file:
+        trained_model = pickle.load(file)
     return trained_model
 
 

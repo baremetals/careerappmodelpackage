@@ -13,5 +13,5 @@ strictyaml~=1.7.3
 pymilvus~=2.3.2
 pandas~=2.1.2
 python-dotenv
-
+typed-ast==1.5.0
 

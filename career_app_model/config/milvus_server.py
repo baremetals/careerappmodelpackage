@@ -1,6 +1,6 @@
-from core import config
-from pymilvus import connections
 import os
+
+from pymilvus import connections
 
 
 def connect_to_milvus(host='localhost', port='19530', user=None, password=None):
@@ -17,4 +17,3 @@ def connect_to_milvus(host='localhost', port='19530', user=None, password=None):
         port=port
     )
     print("Connected to Milvus successfully!")
-
