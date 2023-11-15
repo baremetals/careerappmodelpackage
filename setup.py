@@ -6,7 +6,7 @@ from pathlib import Path
 from setuptools import find_packages, setup
 
 # Package meta-data.
-NAME = 'tid-career_app-model'
+NAME = 'career_app-model'
 DESCRIPTION = "Career Suitability Model Training."
 URL = "https://github.com/baremetals/careerappmodelpackage"
 EMAIL = "baremetals16@gmail.com"
