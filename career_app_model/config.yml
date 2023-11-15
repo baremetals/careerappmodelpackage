@@ -1,0 +1,63 @@
+# Package Overview
+package_name: career_app_model
+
+# Data Files
+training_data_file: model_data.csv
+test_data_file: user_training_data.csv
+embeddings_data_file: structured_job_roles_data.csv
+
+model_name: career_app_model
+save_model_file: career_app_model_output_v
+
+
+# Model Variables
+# The variable we are attempting to predict (Suitability Score)
+target: SuitabilityScore
+n_estimators: 100
+
+# set train/test split
+test_size: 0.2
+
+# to set the random seed
+random_state: 42
+
+features:
+  - responseToQuestion1
+  - responseToQuestion2
+  - responseToQuestion3
+  - responseToQuestion4
+  - responseToQuestion5
+  - responseToQuestion6
+  - responseToQuestion7
+  - responseToQuestion8
+  - responseToQuestion9
+  - responseToQuestion10
+  - responseToQuestion11
+  - responseToQuestion12
+  - responseToQuestion13
+  - responseToQuestion14
+  - responseToQuestion15
+  - responseToQuestion16
+  - responseToQuestion17
+  - responseToQuestion18
+  - responseToQuestion19
+  - responseToQuestion20
+  - selectedIndustry1
+  - selectedIndustry2
+  - selectedIndustry3
+  - selectedIndustry4
+  - selectedIndustry5
+
+
+
+# Embeddings data
+embedding_dimension: 437
+embedding_collection_description: "Job Role Embeddings"
+embedding_collection_name: "job_role_embeddings"
+embedding_field_name: "embedding"
+embedding_role_id_name: "role_id"
+embedding_group_by: "role_id"
+embedding_apply_to: "Skills"
+embedding_is_primary: True
+embedding_max_length: 200
+embedding_max_features: 5000
