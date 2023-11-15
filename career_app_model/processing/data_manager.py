@@ -48,8 +48,11 @@ def remove_old_models(*, files_to_keep: t.List[str]) -> None:
         mapping between the package version and the model
         version to be imported and used by other applications.
         """
-    do_not_delete = files_to_keep + ["__init__.py"]
+    do_not_delete = files_to_keep + ["__init__.py", "__pycache__"]
     for model_file in TRAINED_MODEL_DIR.iterdir():
         if model_file.name not in do_not_delete:
+            if model_file.is_dir():
+                # Skip directories, or implement directory removal logic
+                continue
             model_file.unlink()
 
