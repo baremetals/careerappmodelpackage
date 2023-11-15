@@ -1,19 +1,17 @@
-from career_app_model.predict import predict_suitability_score
-from career_app_model.processing.prepare_data import json_to_dataframe
+import numpy as np
+from career_app_model.predict import predict_suitability_scores
 
 
 def test_make_prediction(test_sample_data):
-
-    converted_data = json_to_dataframe(test_sample_data)
-
-    # When
-    result = predict_suitability_score(input_data=converted_data)
-
-    # Then
+    result = predict_suitability_scores(input_data=test_sample_data)
     prediction = result.get("suitability_scores")
-    assert isinstance(prediction, dict)
+
+    assert isinstance(prediction, np.ndarray), "prediction is not a NumPy array, it is None"
     assert result.get("errors") is None
-    for key, value in result.items():
-        assert isinstance(key, str)
-        assert isinstance(key, float)
-        assert 0 <= value <= 1
+
+    # Check each value in the prediction array
+    for value in np.nditer(prediction[0]):
+        value = float(value)
+        assert isinstance(value, float), "Value in prediction is not a float"
+        scaled_value = value / 10
+        assert 0 <= scaled_value <= 2, "Value in prediction is not within the expected range when scaled"

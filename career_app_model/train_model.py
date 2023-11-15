@@ -19,8 +19,7 @@ def run_training() -> None:
                                                       .app_model_config.random_state)
 
     # Train the model
-    model = RandomForestRegressor(n_estimators=config.app_model_config.n_estimators, random_state=config.app_model_config
-                                  .random_state)
+    model = RandomForestRegressor(random_state=config.app_model_config.random_state)
 
     model.fit(X_train, y_train)
 

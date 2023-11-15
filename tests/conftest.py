@@ -58,84 +58,84 @@ def test_sample_data():
         "selectedInterests": ["analytical thinking skills", "excellent written communication skills"],
         "responses": [
             {
-                "questionId": "649b3db2d50f2c4652f63bc0",
-                "responseToQuestion1": "working with machines"
+                "questionId": "64d2bcef1902d8ba6a46c0e8",
+                "responseToQuestion1": "ResponseOption3"
             },
             {
-                "questionId": "649b4aa063832f79b117190e",
-                "responseToQuestion2": "no"
+                "questionId": "64d2bcef1902d8ba6a46c0e9",
+                "responseToQuestion2": "ResponseOption1"
             },
             {
-                "questionId": "649b4aa063832f79b117190f",
-                "responseToQuestion3": "analytical"
+                "questionId": "64d2bcef1902d8ba6a46c0ea",
+                "responseToQuestion3": "ResponseOption2"
             },
             {
-                "questionId": "649b4aa063832f79b1171910",
-                "responseToQuestion4": "independently"
+                "questionId": "64d2bcef1902d8ba6a46c0ee",
+                "responseToQuestion4": "ResponseOption2"
             },
             {
-                "questionId": "649b4aa063832f79b1171911",
-                "responseToQuestion5": "yes"
+                "questionId": "64d2bcef1902d8ba6a46c0eb",
+                "responseToQuestion5": "ResponseOption1"
             },
             {
-                "questionId": "649b4aa063832f79b1171912",
-                "responseToQuestion6": "no"
+                "questionId": "64d2bcef1902d8ba6a46c0ec",
+                "responseToQuestion6": "ResponseOption1"
             },
             {
-                "questionId": "649b4aa063832f79b1171913",
-                "responseToQuestion7": "yes"
+                "questionId": "64d2bcef1902d8ba6a46c0ed",
+                "responseToQuestion7": "ResponseOption2"
             },
             {
-                "questionId": "649b4aa063832f79b1171914",
-                "responseToQuestion8": "fast paced"
+                "questionId": "64d2bcef1902d8ba6a46c0f0",
+                "responseToQuestion8": "ResponseOption3"
             },
             {
-                "questionId": "649b4aa063832f79b1171915",
-                "responseToQuestion9": "no"
+                "questionId": "64d2bcef1902d8ba6a46c0ef",
+                "responseToQuestion9": "ResponseOption2"
             },
             {
-                "questionId": "649b4aa063832f79b1171916",
-                "responseToQuestion10": "yes"
+                "questionId": "64d2bcef1902d8ba6a46c0f1",
+                "responseToQuestion10": "ResponseOption3"
             },
             {
-                "questionId": "649b4aa063832f79b1171917",
-                "responseToQuestion11": "no"
+                "questionId": "64d2bcef1902d8ba6a46c0f2",
+                "responseToQuestion11": "ResponseOption1"
             },
             {
-                "questionId": "649b4aa063832f79b1171918",
-                "responseToQuestion12": "yes"
+                "questionId": "64d2bcef1902d8ba6a46c0f5",
+                "responseToQuestion12": "ResponseOption1"
             },
             {
-                "questionId": "649b4aa063832f79b1171919",
-                "responseToQuestion13": "no"
+                "questionId": "64d2bcef1902d8ba6a46c0f6",
+                "responseToQuestion13": "ResponseOption2"
             },
             {
-                "questionId": "649b4aa063832f79b117191a",
-                "responseToQuestion14": "yes"
+                "questionId": "64d2bcef1902d8ba6a46c0f7",
+                "responseToQuestion14": "ResponseOption1"
             },
             {
-                "questionId": "649b4aa063832f79b117191b",
-                "responseToQuestion15": "no"
+                "questionId": "64d2bcef1902d8ba6a46c0f8",
+                "responseToQuestion15": "ResponseOption2"
             },
             {
-                "questionId": "649b4aa063832f79b117191c",
-                "responseToQuestion16": "no"
+                "questionId": "64d2bcef1902d8ba6a46c0f9",
+                "responseToQuestion16": "ResponseOption2"
             },
             {
-                "questionId": "649b4aa063832f79b117191d",
-                "responseToQuestion17": "yes"
+                "questionId": "64d2bcef1902d8ba6a46c0fa",
+                "responseToQuestion17": "ResponseOption1"
             },
             {
-                "questionId": "649b4aa063832f79b117191e",
-                "responseToQuestion18": "not important"
+                "questionId": "64d2bcef1902d8ba6a46c0fb",
+                "responseToQuestion18": "ResponseOption3"
             },
             {
-                "questionId": "649b4aa063832f79b117191f",
-                "responseToQuestion19": "hybrid"
+                "questionId": "64d2bcef1902d8ba6a46c0f3",
+                "responseToQuestion19": "ResponseOption3"
             },
             {
-                "questionId": "64a86abdd8f3617c13237c93",
-                "responseToQuestion20": "yes"
+                "questionId": "64d2bcef1902d8ba6a46c0f4",
+                "responseToQuestion20": "ResponseOption3"
             }
         ]
     }

@@ -19,7 +19,7 @@ def roles_suitability_search(industry_data: List, milvus_collection: Collection)
             # Execute the search query in the Milvus collection
             search_results: List[dict] = milvus_collection.query(
                 expr=search_expression,
-                limit=10,
+                limit=5,
                 output_fields=['role_id', 'industries']
             )
             # Process search results and extract role IDs

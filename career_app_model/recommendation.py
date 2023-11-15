@@ -1,7 +1,7 @@
 from typing import List, Optional
 
-from processing.search_roles import roles_suitability_search
-from processing.vector_search import vector_search
+from career_app_model.processing.search_roles import roles_suitability_search
+from career_app_model.processing.vector_search import vector_search
 from pymilvus import Collection
 
 from career_app_model.config.core import config
