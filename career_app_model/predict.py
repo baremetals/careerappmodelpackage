@@ -26,6 +26,6 @@ def predict_suitability_scores(*, input_data: t.Dict) -> t.Dict:
             "version": _version,
             "errors": errors
         }
-        print(results)
+        # print(results)
 
     return results
