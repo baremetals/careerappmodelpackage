@@ -1,24 +1,12 @@
 import ast
-from pathlib import Path
-
-import joblib
 from pymilvus import Collection, CollectionSchema, DataType, FieldSchema
-
-# import pandas as pd
-from sklearn.feature_extraction.text import TfidfVectorizer
-
-from career_app_model.config.core import DATASET_DIR, config
-
-# Import the connection function
+from career_app_model.config.core import config
 from career_app_model.config.milvus_server import connect_to_milvus
+from career_app_model.create_and_save_vectorizer import create_and_save_vectorizer
 from career_app_model.processing.data_manager import load_dataset
 
 # Make sure we're connected to Milvus
 connect_to_milvus()
-
-
-def create_vectorizer():
-    return TfidfVectorizer(max_features=config.embedding_config.embedding_max_features)
 
 
 def convert_string_to_list(string):
@@ -28,26 +16,10 @@ def convert_string_to_list(string):
         return []
 
 
+embeddings_aggregated = create_and_save_vectorizer()
+
 # Load the job roles data
 df = load_dataset(file_name=config.embedding_config.embeddings_data_file)
-# df = pd.read_csv('structured_job_roles_data.csv')
-
-# Aggregate the skills for each job role ID
-aggregated_skills = (df.groupby(config.embedding_config.embedding_group_by)[config.embedding_config.embedding_apply_to]
-                     .apply(lambda x: ','.join(x)).reset_index())
-
-# Generate embeddings using TfidfVectorizer
-vectorizer = create_vectorizer()
-vectorizer.fit(aggregated_skills[config.embedding_config.embedding_apply_to])
-
-# save the vectorizer
-joblib.dump(vectorizer, Path(f"{DATASET_DIR}/vectorizer.joblib"))
-
-# control the embedding size
-X_embeddings = vectorizer.transform(aggregated_skills[config.embedding_config.embedding_apply_to])
-
-embeddings_aggregated = X_embeddings.todense().tolist()
-
 # Drop extra columns
 df = df.drop(columns=['Education Requirements', 'Progress Paths', 'Skills'])
 

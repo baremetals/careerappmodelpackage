@@ -3,8 +3,8 @@ tid_career_app_model.egg-info
 requirements.txt
 career_app_model/trained_models/career_app_model_output_v*.pkl
 *.pkl
-
-
+*.joblib
+career_app_model/datasets/vectorizer.joblib
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
