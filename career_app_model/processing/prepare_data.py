@@ -50,10 +50,15 @@ def prepare_data(user_data_df: pd.DataFrame, structured_data_df: pd.DataFrame) -
 def transform_input_for_prediction(input_data: dict, structured_data_df: pd.DataFrame):
     user_features = []
 
-    for q_idx in range(1, 21):
-        response = input_data["responses"][q_idx - 1][f'responseToQuestion{q_idx}']
+    for response_item in input_data["responses"]:
+        q_number = response_item["questionNumber"]
+        response = response_item["responseToQuestion"]
         response_idx = int(response.split('ResponseOption')[-1])
-        response_weights = structured_data_df.iloc[q_idx - 1, 8 + 3 * (response_idx - 1)::9].values
+        print(f"Question Number: {q_number}, Response Index: {response_idx}")
+
+        response_weights = structured_data_df.iloc[q_number - 1, 8 + 3 * (response_idx - 1)::9].values
+        print(f"Response Weights: {response_weights}")
+
         user_features.extend(response_weights)
 
     return np.array([user_features])

@@ -30,7 +30,7 @@ def run_training() -> None:
     mae = mean_absolute_error(y_val, y_prediction)
     rmse = mean_squared_error(y_val, y_prediction, squared=False)
 
-    print(mae, rmse)
+    print(f"The model has been generated-----> mean_absolute_error: {mae}, mean_squared_error: {rmse}")
 
     # persist trained model
     save_model(model_to_persist=model)

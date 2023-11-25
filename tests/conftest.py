@@ -53,89 +53,156 @@ def user_interest_data():
 @pytest.fixture()
 def test_sample_data():
     input_data = {
-        "userId": "64b16ff9746c9b729c5",
-        "selectedIndustries": ["Banking and Finance", "Banking and Finance", "Information Technology and Services"],
-        "selectedInterests": ["analytical thinking skills", "excellent written communication skills"],
+        "profileId": "65606f82707d9d2d67b59a8e",
+        "selectedIndustries": [
+            "Banking and Finance",
+            "Professional Services",
+            "Information Technology and Services"
+        ],
+        "selectedInterests": [
+            "analytical thinking skills",
+            "excellent written communication skills"
+        ],
         "responses": [
             {
                 "questionId": "64d2bcef1902d8ba6a46c0e8",
-                "responseToQuestion1": "ResponseOption3"
+                "questionVersion": 1,
+                "questionNumber": 1,
+                "responseId": "64d2bcf01902d8ba6a46c17e",
+                "responseToQuestion": "ResponseOption3"
             },
             {
                 "questionId": "64d2bcef1902d8ba6a46c0e9",
-                "responseToQuestion2": "ResponseOption1"
+                "questionVersion": 1,
+                "questionNumber": 2,
+                "responseId": "64d2bcf01902d8ba6a46c180",
+                "responseToQuestion": "ResponseOption1"
             },
             {
                 "questionId": "64d2bcef1902d8ba6a46c0ea",
-                "responseToQuestion3": "ResponseOption2"
-            },
-            {
-                "questionId": "64d2bcef1902d8ba6a46c0ee",
-                "responseToQuestion4": "ResponseOption2"
+                "questionVersion": 1,
+                "questionNumber": 3,
+                "responseId": "64d2bcf01902d8ba6a46c18d",
+                "responseToQuestion": "ResponseOption2"
             },
             {
                 "questionId": "64d2bcef1902d8ba6a46c0eb",
-                "responseToQuestion5": "ResponseOption1"
+                "questionVersion": 1,
+                "questionNumber": 4,
+                "responseId": "64d2bcf01902d8ba6a46c190",
+                "responseToQuestion": "ResponseOption1"
             },
             {
                 "questionId": "64d2bcef1902d8ba6a46c0ec",
-                "responseToQuestion6": "ResponseOption1"
+                "questionVersion": 1,
+                "questionNumber": 5,
+                "responseId": "64d2bcf01902d8ba6a46c184",
+                "responseToQuestion": "ResponseOption1"
             },
             {
                 "questionId": "64d2bcef1902d8ba6a46c0ed",
-                "responseToQuestion7": "ResponseOption2"
+                "questionVersion": 1,
+                "questionNumber": 6,
+                "responseId": "64d2bcf01902d8ba6a46c195",
+                "responseToQuestion": "ResponseOption2"
             },
             {
-                "questionId": "64d2bcef1902d8ba6a46c0f0",
-                "responseToQuestion8": "ResponseOption3"
+                "questionId": "64d2bcef1902d8ba6a46c0ee",
+                "questionVersion": 1,
+                "questionNumber": 7,
+                "responseId": "64d2bcf01902d8ba6a46c189",
+                "responseToQuestion": "ResponseOption2"
             },
             {
                 "questionId": "64d2bcef1902d8ba6a46c0ef",
-                "responseToQuestion9": "ResponseOption2"
+                "questionVersion": 1,
+                "questionNumber": 8,
+                "responseId": "64d2bcf01902d8ba6a46c1a5",
+                "responseToQuestion": "ResponseOption2"
+            },
+            {
+                "questionId": "64d2bcef1902d8ba6a46c0f0",
+                "questionVersion": 1,
+                "questionNumber": 9,
+                "responseId": "64d2bcf11902d8ba6a46c1d6",
+                "responseToQuestion": "ResponseOption3"
             },
             {
                 "questionId": "64d2bcef1902d8ba6a46c0f1",
-                "responseToQuestion10": "ResponseOption3"
+                "questionVersion": 1,
+                "questionNumber": 10,
+                "responseId": "64d2bcf01902d8ba6a46c1aa",
+                "responseToQuestion": "ResponseOption3"
             },
             {
                 "questionId": "64d2bcef1902d8ba6a46c0f2",
-                "responseToQuestion11": "ResponseOption1"
-            },
-            {
-                "questionId": "64d2bcef1902d8ba6a46c0f5",
-                "responseToQuestion12": "ResponseOption1"
-            },
-            {
-                "questionId": "64d2bcef1902d8ba6a46c0f6",
-                "responseToQuestion13": "ResponseOption2"
-            },
-            {
-                "questionId": "64d2bcef1902d8ba6a46c0f7",
-                "responseToQuestion14": "ResponseOption1"
-            },
-            {
-                "questionId": "64d2bcef1902d8ba6a46c0f8",
-                "responseToQuestion15": "ResponseOption2"
-            },
-            {
-                "questionId": "64d2bcef1902d8ba6a46c0f9",
-                "responseToQuestion16": "ResponseOption2"
-            },
-            {
-                "questionId": "64d2bcef1902d8ba6a46c0fa",
-                "responseToQuestion17": "ResponseOption1"
-            },
-            {
-                "questionId": "64d2bcef1902d8ba6a46c0fb",
-                "responseToQuestion18": "ResponseOption3"
+                "questionVersion": 1,
+                "questionNumber": 11,
+                "responseId": "64d2bcf01902d8ba6a46c1ac",
+                "responseToQuestion": "ResponseOption1"
             },
             {
                 "questionId": "64d2bcef1902d8ba6a46c0f3",
-                "responseToQuestion19": "ResponseOption3"
+                "questionVersion": 1,
+                "questionNumber": 12,
+                "responseId": "64d2bcf01902d8ba6a46c1ce",
+                "responseToQuestion": "ResponseOption3"
             },
             {
                 "questionId": "64d2bcef1902d8ba6a46c0f4",
-                "responseToQuestion20": "ResponseOption3"
+                "questionVersion": 1,
+                "questionNumber": 13,
+                "responseId": "64d2bcf01902d8ba6a46c1d2",
+                "responseToQuestion": "ResponseOption3"
+            },
+            {
+                "questionId": "64d2bcef1902d8ba6a46c0f5",
+                "questionVersion": 1,
+                "questionNumber": 14,
+                "responseId": "64d2bcf01902d8ba6a46c1b0",
+                "responseToQuestion": "ResponseOption1"
+            },
+            {
+                "questionId": "64d2bcef1902d8ba6a46c0f6",
+                "questionVersion": 1,
+                "questionNumber": 15,
+                "responseId": "64d2bcf01902d8ba6a46c1b5",
+                "responseToQuestion": "ResponseOption2"
+            },
+            {
+                "questionId": "64d2bcef1902d8ba6a46c0f7",
+                "questionVersion": 1,
+                "questionNumber": 16,
+                "responseId": "64d2bcf01902d8ba6a46c1b8",
+                "responseToQuestion": "ResponseOption1"
+            },
+            {
+                "questionId": "64d2bcef1902d8ba6a46c0f8",
+                "questionVersion": 1,
+                "questionNumber": 17,
+                "responseId": "64d2bcf01902d8ba6a46c1bd",
+                "responseToQuestion": "ResponseOption2"
+            },
+            {
+                "questionId": "64d2bcef1902d8ba6a46c0f9",
+                "questionVersion": 1,
+                "questionNumber": 18,
+                "responseId": "64d2bcf01902d8ba6a46c1c1",
+                "responseToQuestion": "ResponseOption2"
+            },
+            {
+                "questionId": "64d2bcef1902d8ba6a46c0fa",
+                "questionVersion": 1,
+                "questionNumber": 19,
+                "responseId": "64d2bcf01902d8ba6a46c1c4",
+                "responseToQuestion": "ResponseOption1"
+            },
+            {
+                "questionId": "64d2bcef1902d8ba6a46c0fb",
+                "questionVersion": 1,
+                "questionNumber": 20,
+                "responseId": "64d2bcf01902d8ba6a46c1ca",
+                "responseToQuestion": "ResponseOption3"
             }
         ]
     }

@@ -1,4 +1,4 @@
-from typing import List, Optional, Dict, Tuple
+from typing import List, Optional, Dict, Tuple, Union
 from pydantic import BaseModel, ValidationError, validator, field_validator
 
 
@@ -17,8 +17,8 @@ def validate_inputs(*, input_data: Dict) -> Tuple[Dict, Optional[dict]]:
 
 
 class SingleResponseDataInputSchema(BaseModel):
-    userId: str
+    profileId: str
     selectedIndustries: List[str]
     selectedInterests: List[str]
-    responses: List[dict[str, str]]
+    responses: List[Dict[str, Union[str, int]]]
 
